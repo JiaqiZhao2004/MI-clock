@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Mass Island World Clock</title>
+</head>
+<body>
+  <h2>Mass Island World Clock</h2>
+  <p>Since <strong>2020-07-01 16:36 ...</strong></p>
+  <p id="result"></p>
+
+  <script>
+    function calculateMCDate() {
+      // 2020年7月1日 16:36 美东时间（夏令时是 UTC-4）
+      // Date.UTC(year, monthIndex, day, hour, minute, second) 构建的是 UTC 时间
+      // monthIndex 是从 0 开始的（所以 6 = 7 月）
+      // +4 是因为美东时间在 7 月处于夏令时（EDT, UTC-4），要转换为 UTC 需加上 4 小时
+      const start = new Date(Date.UTC(2020, 6, 1, 16 + 4, 36, 0));
+      const now = new Date();
+      const diffMinutes = (now - start) / (1000 * 60);
+      const mcDays = diffMinutes / 20;
+
+      const mcYears = Math.floor(mcDays / 360);
+      const mcMonths = Math.floor((mcDays % 360) / 30);
+      const mcDaysLeft = Math.floor(mcDays % 30);
+
+      document.getElementById("result").innerText =
+        `... it has been ${mcYears} years ${mcMonths} months and ${mcDaysLeft} days in Minecraft.`;
+    }
+
+    calculateMCDate();
+    setInterval(calculateMCDate, 60000); // 每分钟更新
+  </script>
+</body>
+</html>
