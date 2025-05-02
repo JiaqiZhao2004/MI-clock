@@ -2,11 +2,11 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
-  <title>Mass Island World Clock</title>
+  <title>World Clock for Mass Island</title>
 </head>
 <body>
   <h2>Mass Island World Clock</h2>
-  <p>Since <strong>2020-07-01 16:36 ...</strong></p>
+  <p>Since 2020-07-01 16:36 EST ...</p>
   <p id="result"></p>
 
   <script>
@@ -25,7 +25,7 @@
       const mcDaysLeft = Math.floor(mcDays % 30);
 
       document.getElementById("result").innerText =
-        `... it has been ${mcYears} years ${mcMonths} months and ${mcDaysLeft} days in Minecraft.`;
+        `      ... it has been ${mcYears} years ${mcMonths} months and ${mcDaysLeft} days in Minecraft.`;
     }
 
     calculateMCDate();
