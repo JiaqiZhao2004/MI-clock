@@ -22,8 +22,7 @@
 
       const mcMilliseconds = daysPassedInMC * 24 * 60 * 60 * 1000;
 
-      const mcDateTmp = new Date(mcMilliseconds);
-      const mcDate = mcDateTmp.setFullYear(mcDateTmp.getFullYear() - (1970 - 1));
+      const mcDate = new Date(mcMilliseconds).setFullYear(mcDate.getFullYear() - (1970 - 1));
 
       // const mcYears = mcDate.getFullYear();
       // const mcMonths = mcDate.toLocaleString('default', { month: 'long' });
@@ -41,7 +40,7 @@
     }
 
     calculateMCDate();
-    setInterval(calculateMCDate, 1000); // 每秒更新
+    setInterval(calculateMCDate, 100); // 每100ms更新
   </script>
 </body>
 </html>
