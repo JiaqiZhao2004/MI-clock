@@ -18,19 +18,30 @@
       const start = new Date(Date.UTC(2020, 6, 1, 16 + 4, 36, 0));
       const now = new Date();
       const diffMinutes = (now - start) / (1000 * 60);
-      const mcDays = diffMinutes / 20;
+      const daysPassedInMC = diffMinutes / 20;
 
-      
-      const mcYears = Math.floor(mcDays / 365.25);
-      const mcMonths = Math.floor((mcDays % 365.25) / 30.44);
-      const mcDaysLeft = Math.floor(mcDays % 30.44);
+      const mcMilliseconds = daysPassedInMC * 24 * 60 * 60 * 1000;
 
-      document.getElementById("result").innerText =
-        `... it has been ${mcYears} years ${mcMonths} months and ${mcDaysLeft} days in Minecraft.`;
+      const mcDateTmp = new Date(mcMilliseconds);
+      const mcDate = mcDateTmp.setFullYear(mcDateTmp.getFullYear() - (1970 - 1));
+
+      // const mcYears = mcDate.getFullYear();
+      // const mcMonths = mcDate.toLocaleString('default', { month: 'long' });
+      // const mcDays = mcDate.getDate();
+
+      // const mcTime = mcDate.toLocaleString('en-US', { 
+      //     hour: 'numeric', 
+      //     minute: 'numeric', 
+      //     second: 'numeric',
+      // })
+
+      document.getElementById("result").innerText = mcDate.toUTCString();
+        
+        // `... it has been ${mcYears} years ${mcMonths} months and ${mcDays} days in Minecraft.`;
     }
 
     calculateMCDate();
-    setInterval(calculateMCDate, 60000); // 每分钟更新
+    setInterval(calculateMCDate, 1000); // 每秒更新
   </script>
 </body>
 </html>
